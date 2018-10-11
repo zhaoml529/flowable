@@ -15,6 +15,7 @@
         <module>flowable-domain</module>
         <module>flowable-service</module>
         <module>flowable-shiro-context</module>
+        <module>flowable-shiro-client</module>
     </modules>
 
     <properties>
