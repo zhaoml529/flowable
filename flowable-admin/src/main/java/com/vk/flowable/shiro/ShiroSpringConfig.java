@@ -61,7 +61,11 @@ public class ShiroSpringConfig {
 		return sessionDAO;
 	}
 
-
+	/**
+	 * spring远程服务调用，配置服务端
+	 * @param shiroAuthContextService
+	 * @return
+	 */
 	@Bean(name = "/remote/ctx")
 	public HttpInvokerServiceExporter authContextServiceExporter(AdminUserContextService shiroAuthContextService) {
 		HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();

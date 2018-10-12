@@ -40,6 +40,11 @@ public class ClientShiroSpringConfig {
 		return simpleCookie;
 	}
 
+	/**
+	 * spring远程服务调用，配置客户端
+	 * @param prop
+	 * @return
+	 */
 	@Bean
 	public ShiroUserContextService remoteContextService(ShiroConfigProperties prop) {
 		HttpInvokerProxyFactoryBean bean = new HttpInvokerProxyFactoryBean();
@@ -60,6 +65,11 @@ public class ClientShiroSpringConfig {
 		return new LifecycleBeanPostProcessor();
 	}
 
+	/**
+	 * ctxService 是不是应该换成remoteContextService Todo
+	 * @param ctxService
+	 * @return
+	 */
 	@Bean
 	public SessionDAO sessionDAO(ShiroUserContextService ctxService) {
 		ClientShiroSessionDAO dao = new ClientShiroSessionDAO();

@@ -15,7 +15,7 @@ public class ClientShiroUserRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		ShiroAdminUser shiroUser = (ShiroAdminUser) principals.getPrimaryPrincipal();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		info.addRoles(shiroUser.getRoles());
+		info.addRole(shiroUser.getRoleType());
 		info.addStringPermissions(shiroUser.getPermissions());
 		return info;
 	}

@@ -5,7 +5,7 @@ import org.apache.shiro.SecurityUtils;
 
 
 public class ClientShiroUserContext{
-	public static ShiroAdminUser getErpUser() {
+	public static ShiroAdminUser getUserInfo() {
 		return (ShiroAdminUser) SecurityUtils.getSubject().getPrincipal();
 	}
 }
