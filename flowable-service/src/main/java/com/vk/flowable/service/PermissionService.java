@@ -1,7 +1,9 @@
 package com.vk.flowable.service;
 
 import com.vk.flowable.domain.Permission;
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +14,7 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2018-10-11
  */
 public interface PermissionService extends IService<Permission> {
+
+    List<Permission> rolePermissionList(Long roleId);
 
 }

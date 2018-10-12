@@ -14,7 +14,7 @@
 
     <properties>
         <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
-        <mybatisplus.version>2.1.6</mybatisplus.version>
+        <mybatisplus.version>3.0.2</mybatisplus.version>
         <velocity.version>1.7</velocity.version>
         <junit.version>4.12</junit.version>
     </properties>

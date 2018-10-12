@@ -34,10 +34,12 @@ public class ShiroAdminUser implements Serializable{
 	 */
 	private String token;
 
+	private Long roleId;
+
+	private String roleType;	// 角色标识
+
 	private List<String> permissions = new ArrayList<String>();
 
-	private List<String> roles = new ArrayList<String>();
-	
 	/**
 	 * 本函数输出将作为默认的<shiro:principal/>输出.
 	 */
@@ -119,19 +121,27 @@ public class ShiroAdminUser implements Serializable{
 		this.token = token;
 	}
 
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+	public String getRoleType() {
+		return roleType;
+	}
+
+	public void setRoleType(String roleType) {
+		this.roleType = roleType;
+	}
+
 	public List<String> getPermissions() {
 		return permissions;
 	}
 
 	public void setPermissions(List<String> permissions) {
 		this.permissions = permissions;
-	}
-
-	public List<String> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
 	}
 }

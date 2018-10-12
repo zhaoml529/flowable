@@ -1,15 +1,12 @@
 package com.vk.flowable.domain;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.baomidou.mybatisplus.annotations.TableLogic;
-import com.baomidou.mybatisplus.annotations.Version;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.Version;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import java.io.Serializable;
-
-import com.baomidou.mybatisplus.annotations.Version;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,22 +20,24 @@ import lombok.experimental.Accessors;
  * @since 2018-10-11
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("tb_role_permission")
-public class RolePermission extends BaseEntity {
+public class RolePermission implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-	@TableId(value="id", type= IdType.AUTO)
-	private Long id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
     /**
      * 角色id
      */
-	private Long roleId;
+    private Long roleId;
+
     /**
      * 权限id
      */
-	private Long permissionId;
+    private Long permissionId;
 
 }

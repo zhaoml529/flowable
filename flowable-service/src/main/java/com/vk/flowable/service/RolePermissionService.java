@@ -1,7 +1,7 @@
 package com.vk.flowable.service;
 
 import com.vk.flowable.domain.RolePermission;
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>

@@ -1,11 +1,11 @@
 package com.vk.flowable;
 
+import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
-import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class GeneratorServiceEntity {
     @Test
     public void generateCode() {
         String packageName = "com.vk.flowable";
-        generateByTables(packageName, "tb_permission", "tb_role_permission");
+        generateByTables(packageName, "tb_role");
     }
 
     private void generateByTables(String packageName, String... tableNames) {
@@ -30,7 +30,6 @@ public class GeneratorServiceEntity {
         strategyConfig
                 .setCapitalMode(false)
                 .setEntityLombokModel(true)
-                .setDbColumnUnderline(true)
                 .setNaming(NamingStrategy.underline_to_camel)
                 .setTablePrefix("tb_")
                 .setVersionFieldName("version")

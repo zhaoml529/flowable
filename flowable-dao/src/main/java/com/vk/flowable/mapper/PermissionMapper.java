@@ -1,7 +1,10 @@
 package com.vk.flowable.mapper;
 
 import com.vk.flowable.domain.Permission;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface PermissionMapper extends BaseMapper<Permission> {
 
+    List<Permission> rolePermissionList(@Param("roleId") Long roleId);
 }

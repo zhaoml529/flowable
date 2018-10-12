@@ -1,7 +1,7 @@
 package com.vk.flowable.mapper;
 
 import com.vk.flowable.domain.RolePermission;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>

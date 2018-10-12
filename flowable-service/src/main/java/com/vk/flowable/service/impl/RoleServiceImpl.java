@@ -3,7 +3,7 @@ package com.vk.flowable.service.impl;
 import com.vk.flowable.domain.Role;
 import com.vk.flowable.mapper.RoleMapper;
 import com.vk.flowable.service.RoleService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

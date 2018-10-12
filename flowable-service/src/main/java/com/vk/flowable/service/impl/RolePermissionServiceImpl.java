@@ -3,7 +3,7 @@ package com.vk.flowable.service.impl;
 import com.vk.flowable.domain.RolePermission;
 import com.vk.flowable.mapper.RolePermissionMapper;
 import com.vk.flowable.service.RolePermissionService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
