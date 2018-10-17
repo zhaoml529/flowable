@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8"/>
+    <title layout:title-pattern="$CONTENT_TITLE"></title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/style-metro.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/themes/light.css" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/bootstrap-chosen/chosen.css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/bitbug_favicon.ico" />
+    <style type="text/css">
+        /*
+        左侧菜单选中展示尖角符号
+        */
+        .open .select1{
+            right: -7px;
+            top: 0px;
+            width: 7px;
+            height: 39px;
+            position: absolute;
+            background-image: url(../../assets/img/sidebar-menu-arrow-green.png);
+        }
+        /*
+        加载左侧菜单时的loading样式
+         */
+        .board-loading {
+            position: absolute;
+            z-index: 900;
+            top: 0;
+            left: 0;
+            background: white url(../../assets/img/bigloading.gif) no-repeat center 40%;
+            width: 100%;
+            height: 100%;
+        }
+        /*
+        顶部切换商家样式
+         */
+        .header .hor-menu .hor-menu-search-form-toggler {
+            display: inline-block;
+            padding: 11px 22px 11px 22px !important;
+            cursor: pointer;
+            background: #434343 url(../../assets/img/sidebar-toggler.jpg) no-repeat center;
+        }
+        /*
+        顶部选择商家样式
+         */
+        .header .hor-menu ul.nav li a.chzn-single {
+            font-size: 14px;
+            padding: 0px 0px;
+        }
+        #vendorSelect {
+            font-size: 14px !important;
+        }
+    </style>
+
+</head>
+<body class="page-header-fixed">
+<!--音频文件,如果浏览器不支持audio标签则会提示标签中的信息,Internet Explorer 9+, Firefox, Opera, Chrome 以及 Safari 支持 <audio> 标签。-->
+<audio id="newOrder" src="/assets/sound/newOrder.mp3">Your browser does not support the audio tag.</audio>
+<audio id="refundOrder" src="/assets/sound/refundOrder.mp3">Your browser does not support the audio tag.</audio>
+<div th:replace="fragments/header :: header">
+</div>
+<div class="page-container row-fluid">
+    <div class="page-sidebar nav-collapse collapse" id="page-sidebar">
+        <!-- BEGIN SIDEBAR MENU -->
+        <div id="sidebar_loading"></div>
+        <ul id="pageSideBarMenu" class="page-sidebar-menu hidden-phone hidden-tabletboard-loading">
+            <li>
+                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                <div class="sidebar-toggler hidden-phone"></div>
+                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+            </li>
+        </ul>
+        <!--HORIZONTAL AND SIDEBAR MENU FOR MOBILE & TABLETS-->
+        <!--todo 手机查看时，显示board -->
+        <!-- END SIDEBAR MENU -->
+    </div>
+
+    <div class="page-content" style="min-height: 0px !important;border-left: 0px !important;height: 0px !important;">
+        <div class="container-fluid" style="padding-right: 0px;">
+            <div layout:fragment="content"></div>
+        </div>
+    </div>
+    
+    <!--修改密码模态框-->
+    <div id="pwdModal" class="modal hide fade" tabindex="-1" style="width: 500px;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4>修改密码</h4>
+        </div>
+        <div class="modal-body">
+            <!--<div id="" class="scroller" style="height:160px" data-always-visible="1" data-rail-visible1="1">-->
+                <form action="/update/password" id="pwdForm" class="form-horizontal" method="post">
+                    <input id="userId" name="userId" value="" style="display: none">  <!--显示模态框时从cookie获取-->
+                    <div class="control-group">
+                        <label class="control-label" style="width: 100px">原密码<span class="required">*</span></label>
+                        <div class="controls" style="margin-left: 120px">
+                            <input type="password" name="originalPwd" data-required="1" class="span8"/>
+                        </div>
+                        <div class="controls" id="originalMsg" style="margin-left: 120px"></div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" style="width: 100px">新密码<span class="required">*</span></label>
+                        <div class="controls" style="margin-left: 120px">
+                            <input type="password" name="newPwd" class="span8"/>
+                        </div>
+                        <div class="controls" id="newMsg" style="margin-left: 120px"></div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" style="width: 100px">确认密码<span class="required">*</span></label>
+                        <div class="controls" style="margin-left: 120px">
+                            <input type="password" name="confirmPwd" class="span8"/>
+                        </div>
+                        <div class="controls" id="confirmMsg" style="margin-left: 120px"></div>
+                    </div>
+                </form>
+            <!--</div>-->
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn" onclick="cancelPwd();">取消</button>
+            <button type="button" id="pwdModifyBtn" onclick="modifyPassword();" class="btn blue">确认</button>
+        </div>
+    </div>
+</div>
+<!-- 
+<div class="footer navbar-fixed-bottom" style="width: 190px;">
+    <div class="footer-inner">
+        2017 &copy; OurHours.com
+    </div>
+</div> -->
+<div th:replace="fragments/footer :: common-js"></div>
+<div layout:fragment="content-js"></div>
+
+<script src="/assets/scripts/board.js" type="text/javascript"></script>
+<script src="/assets/scripts/vendor-list.js" type="text/javascript"></script>
+<script src="/assets/scripts/order-note.js" type="text/javascript"></script>
+<script src="/assets/scripts/modify-password.js" type="text/javascript"></script>
+<script src="/assets/plugins/bootstrap-chosen/chosen.jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" th:inline="javascript">
+$(function () {
+    App.init();
+    initBoard();
+    orderNote();
+
+    // 修改密码界面打卡时触发
+    $('#pwdModal').on('show', function () {
+        initPwdForm();  // 初始化表单验证器
+    })
+
+    // 切换商家
+    var userType = '[(${isSysUser})]';
+    if(userType != 1) {
+        $("#vendorSelectLi").hide();
+    } else {
+        initVendorList();
+    }
+
+})
+</script>
+</body>
+</html>

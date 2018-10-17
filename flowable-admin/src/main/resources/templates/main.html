@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}">
+<!-- BEGIN HEAD -->
+<head>
+	<title>主页</title>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body>
+<th:block layout:fragment="content">
+	<!-- BEGIN CONTAINER -->
+	<div class="container-fluid">
+		<!-- BEGIN PAGE -->
+		<!-- BEGIN PAGE CONTAINER-->
+			<!-- BEGIN PAGE HEADER-->
+			<div class="row-fluid">
+				<div class="span12">
+					<!--<img alt="" src="/assets/img/main_background.jpg" />-->
+					<div class="well well-large" style="margin-top: 20px">
+						<h4>咪听验票系统平台</h4>
+						欢迎使用咪听验票系统!
+					</div>
+				</div>
+			</div>
+			<!-- END PAGE HEADER-->
+		<!-- END PAGE CONTAINER-->
+		<!-- END PAGE -->
+	</div>
+</th:block>
+
+</body>
+<!-- END BODY -->
+</html>

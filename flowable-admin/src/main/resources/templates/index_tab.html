@@ -1,0 +1,30 @@
+﻿<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout_index}">
+<!-- BEGIN HEAD -->
+<head>
+	<meta charset="utf-8" />
+	<title>咪听验票系统平台</title>
+	<link th:href="@{/assets/css/page-tab/page-tab.css}" rel="stylesheet" type="text/css"/>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed">
+<th:block layout:fragment="content">
+	<!-- BEGIN CONTAINER -->
+	<div id="main-bd">
+		<div class="page-tab" id="page-tab"></div>
+	</div>
+</th:block>
+
+<th:block layout:fragment="content-js">
+	<script type="text/javascript">
+        document.domain = document.domain;
+		var isTab = true;	// 是否开启tab标签 true开启 false关闭
+	</script>
+	<script th:src="@{/assets/scripts/tabs.js}" type="text/javascript"></script>
+	<script th:src="@{/assets/scripts/page-tab.js}" type="text/javascript"></script>
+</th:block>
+</body>
+<!-- END BODY -->
+</html>

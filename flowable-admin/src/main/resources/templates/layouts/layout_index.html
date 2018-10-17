@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8"/>
+    <title layout:title-pattern="$CONTENT_TITLE"></title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/style-metro.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/themes/light.css" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/plugins/nice-validator/jquery.validator.css}" rel="stylesheet" type="text/css"/>
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!--<link rel="shortcut icon" type="image/x-icon" href="/assets/img/bitbug_favicon.ico" />-->
+
+
+</head>
+<body class="page-header-fixed">
+<div th:replace="fragments/header :: header">
+</div>
+<div class="page-container">
+    <div class="page-sidebar nav-collapse collapse" id="page-sidebar">
+        <!-- BEGIN SIDEBAR MENU -->
+        <ul id="pageSideBarMenu" class="page-sidebar-menu">
+            <li class="start active">
+                <a href="javascript:void(0);">
+                    <i class="icon-home"></i>
+                    <span class="title">管理中心</span>
+                    <span class="arrow open"></span>
+                    <span class="selected"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="/activity/list" id="1">活动管理</a>
+                    </li>
+                    <!--<li>
+                        <a href="/ticket/type/list" id="2">门票类型管理</a>
+                    </li>-->
+                    <li>
+                        <a href="/checker/list" id="3">检票员管理</a>
+                    </li>
+                    <li>
+                        <a href="/operation/log/list" id="4">日志管理</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!--HORIZONTAL AND SIDEBAR MENU FOR MOBILE & TABLETS-->
+        <!--todo 手机查看时，显示board -->
+        <!-- END SIDEBAR MENU -->
+    </div>
+
+    <!--<div class="page-content" style="min-height: 0px !important;border-left: 0px !important;height: 0px !important;">-->
+    <div class="page-content">
+        <!--<div class="container-fluid" style="padding-right: 0px;">-->
+        <div class="container-fluid">
+            <div layout:fragment="content"></div>
+        </div>
+    </div>
+    <!--修改密码模态框-->
+    <div id="pwdModal" class="modal hide fade" tabindex="-1" style="width: 500px;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4>修改密码</h4>
+        </div>
+        <div class="modal-body">
+            <!--<div id="" class="scroller" style="height:160px" data-always-visible="1" data-rail-visible1="1">-->
+                <form action="/update/password" id="pwdForm" class="form-horizontal" method="post">
+                    <input id="userId" name="userId" th:value="${manager.id}" style="display: none">  <!--显示模态框时从cookie获取-->
+                    <div class="control-group">
+                        <label class="control-label" style="width: 100px">原密码<span class="required">*</span></label>
+                        <div class="controls" style="margin-left: 120px">
+                            <input type="password" name="originalPwd" data-required="1" class="span3"/>
+                        </div>
+                        <div class="controls" id="originalMsg" style="margin-left: 120px"></div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" style="width: 100px">新密码<span class="required">*</span></label>
+                        <div class="controls" style="margin-left: 120px">
+                            <input type="password" name="newPwd" class="span3"/>
+                        </div>
+                        <div class="controls" id="newMsg" style="margin-left: 120px"></div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" style="width: 100px">确认密码<span class="required">*</span></label>
+                        <div class="controls" style="margin-left: 120px">
+                            <input type="password" name="confirmPwd" class="span3"/>
+                        </div>
+                        <div class="controls" id="confirmMsg" style="margin-left: 120px"></div>
+                    </div>
+                </form>
+            <!--</div>-->
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn" onclick="cancelPwd();">取消</button>
+            <button type="button" id="pwdModifyBtn" onclick="modifyPassword();" class="btn blue">确认</button>
+        </div>
+    </div>
+</div>
+<!-- 
+<div class="footer navbar-fixed-bottom" style="width: 190px;">
+    <div class="footer-inner">
+        2017 &copy; OurHours.com
+    </div>
+</div> -->
+<div th:replace="fragments/footer :: common-js"></div>
+<div layout:fragment="content-js">
+</div>
+
+<script src="/assets/scripts/modify-password.js" type="text/javascript"></script>
+<script type="text/javascript" th:inline="javascript">
+$(function () {
+    App.init();
+//    initSideBar();
+
+    // 修改密码界面打卡时触发
+    $('#pwdModal').on('show', function () {
+        initPwdForm();  // 初始化表单验证器
+    })
+
+    $(".sub-menu").find('li a').click(function (event) {
+        event.preventDefault();
+        toMenu(this);
+    });
+
+    $('#main-logo').click(function (event) {
+        event.preventDefault();
+        if(typeof(isTab)!="undefined" && isTab == true){
+            return;
+        }
+        toMenu(this);
+    })
+
+    function toMenu(obj) {
+        if(typeof(isTab)!="undefined" && isTab == true){
+            tab.addTabItem({tabid: obj.id, text: obj.text.trim(), url:obj.href, showClose: true});
+        }else{
+            window.contentFrame.location.href = obj.href;
+        }
+    }
+
+})
+</script>
+</body>
+</html>

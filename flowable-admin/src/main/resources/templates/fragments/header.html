@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<!-- Navbar -->
+<div class="header navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+    <!-- BEGIN TOP NAVIGATION BAR -->
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <!-- BEGIN LOGO -->
+            <a class="brand" href="/main" id="main-logo">
+                <!--<img src="/assets/img/logo.png" style="margin-left: 2px; margin-top: -6px; height: 35px">-->
+                <img src="/assets/img/logo.png">
+            </a>
+            <!-- END LOGO -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <ul class="nav pull-right">
+                <li class="dropdown user">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <img alt="" src="/assets/img/avatar2_small.jpg" />
+                        <span class="header_real_name">[[${manager.userName}]]</span>
+                        <i class="icon-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0);" id="trigger_fullscreen"><i class="icon-move"></i>全屏</a></li>
+                        <li><a href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target="#pwdModal"><i class="icon-key"></i>修改密码</a></li>
+                        <li><a href="/logout"><i class="icon-signout"></i>退出</a></li>
+                    </ul>
+                </li>
+                <!-- END USER LOGIN DROPDOWN -->
+            </ul>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+    </div>
+    <!-- END TOP NAVIGATION BAR -->
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout_index}">
+<!-- BEGIN HEAD -->
+<head>
+	<meta charset="utf-8" />
+	<title>咪听验票系统平台</title>
+</head>
+<body class="page-header-fixed">
+<th:block layout:fragment="content">
+	<iframe frameborder="0" name="contentFrame" id="contentFrame" src="/main" style="width: 100%;height: 100%;border: none;"></iframe>
+</th:block>
+
+<th:block layout:fragment="content-js">
+<script type="text/javascript">
+    var isTab = false;	// 是否开启tab标签 true开启 false关闭
+	setTabHeight();
+	$(window).bind('resize',function(){
+		setTabHeight();
+	});
+	
+	function setTabHeight(){
+		var winHeight = $(window).height();
+		var ifObj = $('#contentFrame');
+		var tabOffset = ifObj.offset();
+		var h = winHeight - tabOffset.top - 10;
+        ifObj.height(h);
+	};
+</script>
+</th:block>
+</body>
+<!-- END BODY -->
+</html>

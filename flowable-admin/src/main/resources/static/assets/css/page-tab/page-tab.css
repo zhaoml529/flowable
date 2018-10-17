@@ -1,0 +1,200 @@
+/**
+   左侧菜单
+*/
+#tab-page-sidebar{
+    overflow-y: scroll!important;
+    overflow-x: hidden!important;
+}
+ul.page-sidebar-menu > li.open > a {
+    background: #28b779 !important;
+    border-top-color: transparent !important;
+    color: #fff !important;
+}
+ul.page-sidebar-menu > li.open > a .arrow.open:before {
+    color: #ffffff !important;
+}
+/**
+   标签页css
+*/
+#main-bd {
+    /*padding-top: 10px;
+    padding-left: 18px;*/
+    background: #f5f5f5 !important;
+    overflow: hidden;
+    zoom: 1;
+}
+
+/* -----------------------
+   * tab *
+* ----------------------- */
+#page-tab {
+    zoom: 1;
+}
+.l-tab-links li:first-child {
+    border-top-left-radius: 2px;
+}
+.l-tab-loading {
+    position: absolute;
+    z-index: 900;
+    top: 0;
+    left: 0;
+    background: white url(img/ligerui/bigloading.gif) no-repeat center 40%;
+    width: 100%;
+    height: 100%;
+    _height: 800px;
+    display: none;
+}
+.l-tab-links {
+    margin-bottom: -1px;
+    position: relative;
+    height: 30px;
+    overflow: hidden;
+    z-index: 1;
+}
+.l-tab-links-left, .l-tab-links-right { position: absolute; width: 16px; z-index: 13; overflow: hidden; cursor: pointer; }
+.l-tab-links-left { left: 0; border-top-left-radius: 2px !important; }
+.l-tab-links-left i {border-color: #FFF #555 #FFF #FFF !important;}
+.l-tab-links-right { right: 0; border-top-right-radius: 2px; }
+.l-tab-links-left i, .l-tab-links-right i { border-style: solid; border-width: 5px; font-size: 0; height: 0; margin: 10px 0 0 0; display:block; width:0; height:0; overflow:hidden;}
+.l-tab-links-right i { background-position: -16px -16px; border-color: #FFF #FFF #FFF #555 !important;margin: 10px 0 0 5px;}
+.l-tab-links-left-over, .l-tab-links-right-over { background: #f4f4f4; }
+.l-tab-links-left-over i { background-position: 0 -16px; }
+.l-tab-links-right-over i { background-position: -16px -16px; }
+.l-tab-links-left-invalid { background-position: 0 0; }
+.l-tab-links-right-invalid { background-position: -16px 0; }
+.l-tab-links ul {
+	margin: 0 0 0 0;
+    padding: 2px 0 0 1px;
+   	list-style: none;
+    width: 9999px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    zoom: 1;
+}
+.l-tab-links li {
+    margin-left: -1px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #E5E5E5;
+    float: left;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.l-tab-links li.l-selected {
+    height: 32px;
+    /* top: -2px; */
+    border: 1px solid #E5E5E5;
+    /*border-top: 1px solid #368ee0;*/
+    border-top: 1px solid #434343;
+    border-bottom: 1px solid #f5f5f5;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    /*background: #368ee0;*/
+    background: #434343;
+    z-index: 10;
+}
+.l-tab-links li a {
+	outline: none;
+    color: #aaa;
+    display: block;
+    margin: 0 30px 0 10px;
+    text-decoration: none;
+    user-select: none;
+    cursor: pointer;
+    padding: 0;
+    list-style: none;
+}
+.l-tab-links li.l-selected a {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+.l-tab-links-item-left, .l-tab-links-item-right { display: none; }
+.l-tab-links-item-close {
+    background: url(img/tab_close.png) no-repeat;
+    width: 12px;
+    height: 12px;
+    overflow: hidden;
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    z-index: 12;
+    cursor: pointer;
+}
+.l-selected .l-tab-links-item-close { background-position: 0 -12px; top: 8px; }
+.l-tab-links .l-tab-links-item-close-over { background-position: 0 -12px; border-radius: 1px; color:#c5160b; }
+.l-tab-content {
+    border-top: 1px solid #E5E5E5;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    background: #F5F5F5;
+    border: none;
+    outline: none;
+}
+.l-tab-content-item {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.l-tab-content-item iframe { width: 100%; height:98%; border: none; }
+.l-tab-drag-proxy { border: 1px solid #BDD1EE; position: absolute; z-index: 1001; height: 25px; line-height: 25px; padding-left: 19px; padding-right: 4px; background: white; }
+.l-tab-drag-proxy .l-drop-icon { position: absolute; top: 5px; left: 4px; width: 16px; height: 16px; }
+.l-drop-no { background: white url('img/ligerui/drop-icons.gif') no-repeat 0px -20px; width: 16px; height: 16px; overflow: hidden; }
+.l-drop-yes { background: white url('img/ligerui/drop-icons.gif') no-repeat 0px 0px; width: 16px; height: 16px; overflow: hidden; }
+.l-tab-drag-droptip { width: 9px; position: absolute; top: 30px; left: 30px; height: 44px; z-index: 1000; }
+.l-tab-drag-droptip .l-drop-move-up { position: absolute; top: 0px; }
+.l-tab-drag-droptip .l-drop-move-down { position: absolute; bottom: 0px; }
+.l-drop-move-up { background: transparent url('img/ligerui/drop-icons.gif') no-repeat -40px 0px; width: 9px; height: 9px; overflow: hidden; }
+.l-drop-move-down { background: transparent url('img/ligerui/drop-icons.gif') no-repeat -60px 0px; width: 9px; height: 9px; overflow: hidden; }
+/* --------------
+   *   menu  *
+* ------------ */
+
+.l-menu { border: 1px solid #979797; background: #F5F5F5; position: absolute; overflow: hidden; padding-bottom: 2px; z-index: 1001 }
+.l-menu-shadow { z-index: 1000;  filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=2, MakeShadow=false, ShadowOpacity=0.2);
+background: #ddd; -moz-border-radius: 5px; -webkit-border-radius: 5px; -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2); -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2); position: absolute; }
+.l-menu-inner { position: relative; width: 100%; z-index: 103; }
+.l-menu-over { position: absolute; top: -24px; left: 2px; z-index: 102; height: 22px; overflow: hidden; background: url('img/ligerui/menu-item-over-m.gif') repeat-x; width: 97%; }
+.l-menu-yline { background: url('img/ligerui/menu-line-y.gif') repeat-y; width: 2px; height: 2000px; position: absolute; left: 28px; top: 1px; z-index: 101; }
+.l-menu-over-l { background: url('img/ligerui/menu-item-over-l.gif') no-repeat; width: 28px; height: 22px; position: absolute; top: 0; left: 0; }
+.l-menu-over-r { background: url('img/ligerui/menu-item-over-r.gif') no-repeat; width: 3px; height: 22px; position: absolute; top: 0; right: 0; }
+.l-menu-item { position: relative; height: 23px; line-height: 23px; width: 100%; cursor: pointer; }
+.l-menu-item-line { background: url('img/ligerui/menu-line-x.gif') repeat-x; height: 2px; width: 100%; margin-top: 1px; margin-bottom: 1px; margin-left: 30px; line-height: 2px; overflow: hidden; }
+.l-menu-item-arrow { background: url('img/ligerui/menu-item-arrow.gif') no-repeat; position: absolute; top: 8px; right: 9px; width: 4px; height: 7px; }
+.l-menu-item-text { color: #000000; left: 33px; position: absolute; top: 0; }
+.l-menu-item-icon { left: 3px; top: 0; position: absolute; width: 25px; height: 22px; overflow: hidden; }
+.l-menu-item-disable { cursor: default; }
+.l-menu-item-disable .l-menu-item-text { color: #A1A1A1; }
+#tabManage {
+	background: #fff;
+    width: 26px;
+    border-top-right-radius: 3px;
+}
+#tabManage i {
+	border-color: #888 #fff #fff;
+    border-style: solid;
+    border-width: 4px;
+    font-size: 0;
+	/* height: 0; */
+     margin: 13px 0 0 8px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    list-style: none;
+}
+#tabManage .tab-menu { position: absolute; z-index: 100; width: 200px; background: #F00; border: 1px solid #F00; }
+.l-tab-menu { position: absolute; background: none repeat scroll 0 0 #fff; border: 1px solid #ccc; border-radius: 0 0 4px 4px; cursor: default; left: 0; line-height: 25px; outline: 0 none; padding: 7px 0; position: absolute !important; text-align: left; top: 0; white-space: nowrap; z-index: 1000; box-shadow:0 0 10px rgba(0, 0, 0, 0.5); }
+.l-tab-menu p { width:115px; text-indent:10px; margin-bottom:3px; cursor:pointer; }
+.l-tab-menu p b{ float:left; width:16px; height:16px; margin:6px 0 0 10px; }
+#tabCloseAll b{ background:url(img/close_all.png) 0 0 no-repeat; }
+.l-tab-menu p:hover{ background:#eee; }
+
