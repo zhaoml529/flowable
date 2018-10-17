@@ -1,6 +1,5 @@
 package com.vk.flowable.shiro;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.vk.flowable.domain.Permission;
 import com.vk.flowable.domain.Role;
 import com.vk.flowable.domain.User;
@@ -20,6 +19,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,9 +43,7 @@ public class AdminUserRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		QueryWrapper<User> wrapper = new QueryWrapper<>();
-		wrapper.lambda().eq(User::getUserName, token.getUsername());
-		User user = userService.getOne(wrapper);
+		User user = userService.getByUserName(token.getUsername());
 		if(user == null) {
 			return null;
 		}
