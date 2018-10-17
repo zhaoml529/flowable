@@ -1,6 +1,9 @@
 package com.vk.flowable.controller;
 
 
+import com.vk.flowable.domain.User;
+import com.vk.flowable.response.BaseResult;
+import com.vk.flowable.shiro.AdminSecurityUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    public BaseResult add(User user) {
+        AdminSecurityUtils.encryptPassword(user);
+        return BaseResult.success();
+    }
 
 }
 
