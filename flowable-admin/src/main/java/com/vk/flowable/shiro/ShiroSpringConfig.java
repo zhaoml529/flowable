@@ -75,9 +75,14 @@ public class ShiroSpringConfig {
 	}
 
 	// Realm实现
-	@Bean
-	public AuthorizingRealm getUserRealm() {
-		return new AdminUserRealm();
+	@Bean(name = "userRealm")
+	public AuthorizingRealm userRealm() {
+		AdminUserRealm adminUserRealm = new AdminUserRealm();
+		adminUserRealm.setAuthenticationCachingEnabled(true);
+		adminUserRealm.setAuthenticationCacheName("authenticationCache");
+		adminUserRealm.setAuthorizationCachingEnabled(true);
+		adminUserRealm.setAuthorizationCacheName("authorizationCache");
+		return adminUserRealm;
 	}
 
 	// 会话管理器
@@ -102,11 +107,11 @@ public class ShiroSpringConfig {
 	// 安全管理器
 	@Bean
 	public DefaultWebSecurityManager securityManager(SessionManager sessionManager, CacheManager cacheManager,
-                                                     Realm realm) {
+													 AuthorizingRealm userRealm) {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		securityManager.setSessionManager(sessionManager);
 		securityManager.setCacheManager(cacheManager);
-		securityManager.setRealm(realm);
+		securityManager.setRealm(userRealm);
 		return securityManager;
 	}
 

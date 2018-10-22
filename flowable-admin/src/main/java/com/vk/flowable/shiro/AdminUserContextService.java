@@ -12,6 +12,7 @@ import org.apache.shiro.util.PatternMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.List;
 
@@ -19,10 +20,11 @@ import java.util.List;
 public class AdminUserContextService implements ShiroUserContextService {
 	PatternMatcher pathMatcher = new AntPathMatcher();
 
-	@Autowired
+	@Resource
 	private SessionDAO sessionDAO;
-	@Autowired
-	private PermissionService permissionSerice;
+
+	@Resource
+	private PermissionService permissionService;
 	
 	@Override
 	public Session getSession(String appKey, Serializable sessionId) {
@@ -48,7 +50,7 @@ public class AdminUserContextService implements ShiroUserContextService {
 	public String[] getMappedValue(String appKey, String requestUri) {
 		QueryWrapper<Permission> wrapper = new QueryWrapper<>();
 		wrapper.lambda().eq(Permission::getType, EnumPermissionType.MENU_TYPE.value);
-		List<Permission> list = permissionSerice.list(wrapper);
+		List<Permission> list = permissionService.list(wrapper);
 		for(Permission p : list) {
 			if(pathMatcher.matches(p.getUri(), requestUri)) {
 				return new String[] {p.getPermissionValue()};

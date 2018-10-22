@@ -20,19 +20,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class AdminUserRealm extends AuthorizingRealm {
 
-	@Autowired
+	/*@Autowired
 	private UserService userService;
 
 	@Autowired
 	private RoleService roleService;
 
 	@Autowired
-	private PermissionService permissionService;
+	private PermissionService permissionService;*/
 
 	/**
 	 * 认证回调函数,登录时调用.
@@ -43,7 +44,8 @@ public class AdminUserRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		User user = userService.getByUserName(token.getUsername());
+//		User user = userService.getByUserName(token.getUsername());
+		User user= new User();
 		if(user == null) {
 			return null;
 		}
@@ -91,12 +93,14 @@ public class AdminUserRealm extends AuthorizingRealm {
 	}
 
 	private String getUserRoles(Long userId) {
-		Role role = roleService.getById(userId);
+//		Role role = roleService.getById(userId);
+		Role role = new Role();
 		return role.getType();
 	}
 
 	private List<String> getUserPermissions(Long roleId) {
-		List<Permission>  permissionList = permissionService.rolePermissionList(roleId);
+//		List<Permission>  permissionList = permissionService.rolePermissionList(roleId);
+		List<Permission> permissionList = new ArrayList<>();
 		List<String> permissions = permissionList.stream().map(entity -> entity.getPermissionValue()).collect(Collectors.toList());
 		return permissions;
 	}

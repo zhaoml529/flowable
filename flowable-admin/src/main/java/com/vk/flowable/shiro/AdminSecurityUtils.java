@@ -24,4 +24,12 @@ public class AdminSecurityUtils {
                 HASH_INTERATIONS).toHex();
         user.setPassword(newPassword);
     }
+
+    public static void main(String[] args) {
+        User user = new User();
+        user.setUserName("admin");
+        user.setPassword("123456");
+        encryptPassword(user);
+        System.out.println(user.getPassword());
+    }
 }
