@@ -1,6 +1,6 @@
 package com.vk.flowable.shiro.client;
 
-import com.vk.flowable.shiro.context.ShiroAdminUser;
+import com.vk.flowable.shiro.context.UserDto;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -13,7 +13,7 @@ public class ClientShiroUserRealm extends AuthorizingRealm {
 	// 授权
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		ShiroAdminUser shiroUser = (ShiroAdminUser) principals.getPrimaryPrincipal();
+		UserDto shiroUser = (UserDto) principals.getPrimaryPrincipal();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		info.addRole(shiroUser.getRoleType());
 		info.addStringPermissions(shiroUser.getPermissions());

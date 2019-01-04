@@ -35,8 +35,8 @@ public class ProcessEngineConfig {
         return processEngineConfiguration;
     }
 
-    @Bean
+    /*@Bean
     public ProcessEngine engine() {
         return ProcessEngines.getDefaultProcessEngine();
-    }
+    }*/
 }

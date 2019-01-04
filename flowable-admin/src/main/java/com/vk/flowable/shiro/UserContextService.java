@@ -9,7 +9,6 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.util.AntPathMatcher;
 import org.apache.shiro.util.PatternMatcher;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -17,7 +16,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Component
-public class AdminUserContextService implements ShiroUserContextService {
+public class UserContextService implements ShiroUserContextService {
 	PatternMatcher pathMatcher = new AntPathMatcher();
 
 	@Resource

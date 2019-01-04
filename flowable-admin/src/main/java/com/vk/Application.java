@@ -1,4 +1,4 @@
-package com.vk.flowable;
+package com.vk;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

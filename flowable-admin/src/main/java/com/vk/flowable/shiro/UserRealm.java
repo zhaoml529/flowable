@@ -7,7 +7,7 @@ import com.vk.flowable.service.PermissionService;
 import com.vk.flowable.service.RoleService;
 import com.vk.flowable.service.UserService;
 import com.vk.flowable.shiro.context.EnumUserType;
-import com.vk.flowable.shiro.context.ShiroAdminUser;
+import com.vk.flowable.shiro.context.UserDto;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -19,21 +19,22 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AdminUserRealm extends AuthorizingRealm {
+/**
+ * 鉴权中心
+ */
+public class UserRealm extends AuthorizingRealm {
 
-	/*@Autowired
+	@Autowired
 	private UserService userService;
 
 	@Autowired
 	private RoleService roleService;
 
 	@Autowired
-	private PermissionService permissionService;*/
+	private PermissionService permissionService;
 
 	/**
 	 * 认证回调函数,登录时调用.
@@ -44,12 +45,11 @@ public class AdminUserRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-//		User user = userService.getByUserName(token.getUsername());
-		User user= new User();
+		User user = userService.getByUserName(token.getUsername());
 		if(user == null) {
 			return null;
 		}
-		ShiroAdminUser dto = new ShiroAdminUser();
+		UserDto dto = new UserDto();
 		BeanUtils.copyProperties(user, dto);
 		if(user.getUserType() == EnumUserType.SYS_USER.value) {
 			dto.setRoleType("HandOfGod");	// 超级管理员
@@ -70,7 +70,7 @@ public class AdminUserRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		ShiroAdminUser shiroUser = (ShiroAdminUser) principals.getPrimaryPrincipal();
+		UserDto shiroUser = (UserDto) principals.getPrimaryPrincipal();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		if(shiroUser.getUserType().value == EnumUserType.SYS_USER.value) {
 			info.addRole("HandOfGod");
@@ -86,21 +86,19 @@ public class AdminUserRealm extends AuthorizingRealm {
 	 */
 	@PostConstruct
 	public void initCredentialsMatcher() {
-		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(AdminSecurityUtils.HASH_ALGORITHM);
-		matcher.setHashIterations(AdminSecurityUtils.HASH_INTERATIONS);
+		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(SecurityUtils.HASH_ALGORITHM);
+		matcher.setHashIterations(SecurityUtils.HASH_INTERATIONS);
 
 		setCredentialsMatcher(matcher);
 	}
 
 	private String getUserRoles(Long userId) {
-//		Role role = roleService.getById(userId);
-		Role role = new Role();
+		Role role = roleService.getById(userId);
 		return role.getType();
 	}
 
 	private List<String> getUserPermissions(Long roleId) {
-//		List<Permission>  permissionList = permissionService.rolePermissionList(roleId);
-		List<Permission> permissionList = new ArrayList<>();
+		List<Permission>  permissionList = permissionService.rolePermissionList(roleId);
 		List<String> permissions = permissionList.stream().map(entity -> entity.getPermissionValue()).collect(Collectors.toList());
 		return permissions;
 	}

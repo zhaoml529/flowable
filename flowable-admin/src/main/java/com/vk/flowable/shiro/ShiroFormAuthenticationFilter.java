@@ -11,12 +11,13 @@ import javax.servlet.ServletResponse;
  * 登录成功后跳转到上一次访问地址
  */
 public class ShiroFormAuthenticationFilter extends FormAuthenticationFilter {
+
+    @Override
     protected void issueSuccessRedirect(ServletRequest request, ServletResponse response) throws Exception {
         String fallbackUrl = (String) getSubject(request, response).getSession().getAttribute("authc.fallbackUrl");
         if(StringUtils.isBlank(fallbackUrl)) {
-        	fallbackUrl = getSuccessUrl();
+            fallbackUrl = getSuccessUrl();
         }
         WebUtils.redirectToSavedRequest(request, response, fallbackUrl);
     }
-
 }

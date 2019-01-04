@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 @SuppressWarnings("serial")
-public class ShiroAdminUser implements Serializable{
+public class UserDto implements Serializable{
 
 	/**
 	 * 用户ID
@@ -70,7 +69,7 @@ public class ShiroAdminUser implements Serializable{
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		ShiroAdminUser other = (ShiroAdminUser) obj;
+		UserDto other = (UserDto) obj;
 		if (userName == null) {
 			if (other.userName != null) {
 				return false;

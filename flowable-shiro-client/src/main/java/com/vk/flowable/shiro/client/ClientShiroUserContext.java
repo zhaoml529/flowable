@@ -1,11 +1,11 @@
 package com.vk.flowable.shiro.client;
 
-import com.vk.flowable.shiro.context.ShiroAdminUser;
+import com.vk.flowable.shiro.context.UserDto;
 import org.apache.shiro.SecurityUtils;
 
 
 public class ClientShiroUserContext{
-	public static ShiroAdminUser getUserInfo() {
-		return (ShiroAdminUser) SecurityUtils.getSubject().getPrincipal();
+	public static UserDto getUserInfo() {
+		return (UserDto) SecurityUtils.getSubject().getPrincipal();
 	}
 }

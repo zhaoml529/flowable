@@ -9,11 +9,14 @@ import org.springframework.data.redis.core.RedisTemplate;
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 会话DAO
+ */
 public class ShiroRedisSessionDAO extends CachingSessionDAO {
 	private static Logger logger = LoggerFactory.getLogger(ShiroRedisSessionDAO.class);
 
 	//private final static String prefix = "oh-erp-shiro-session:";
-	private final static String prefix = "vk:";
+	private final static String prefix = "flowable:";
 
 	private RedisTemplate<String, Object> redisTemplate;
 	private int expireTime = 60000;

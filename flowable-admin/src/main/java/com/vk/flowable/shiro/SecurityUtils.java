@@ -6,7 +6,7 @@ import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 
-public class AdminSecurityUtils {
+public class SecurityUtils {
 
 	public static final String HASH_ALGORITHM = "SHA-1";//指定散列算法为MD5,还有别的算法如：SHA256、SHA1、SHA512
 	public static final int HASH_INTERATIONS = 10;      //散列迭代次数 md5(md5(pwd)): new Md5Hash(pwd, salt, 2).toString()

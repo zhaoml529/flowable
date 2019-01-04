@@ -2,10 +2,9 @@ package com.vk.flowable.controller;
 
 import com.vk.flowable.domain.User;
 import com.vk.flowable.service.UserService;
-import com.vk.flowable.shiro.AdminSecurityUtils;
+import com.vk.flowable.shiro.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,13 +62,13 @@ public class PassportController extends BaseController {
             modelAndView.addObject("errorMessage", "用户名或密码不正确！");
             return modelAndView;
         }
-        Subject subject = SecurityUtils.getSubject();
+        Subject subject = org.apache.shiro.SecurityUtils.getSubject();
         if(subject.isAuthenticated()) { // 已经授权
             return modelAndView;
         }
         try {
-            AdminSecurityUtils.encryptPassword(user);
-            UsernamePasswordToken token = new UsernamePasswordToken(userName, user.getPassword());
+            SecurityUtils.encryptPassword(user);
+            UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
             subject.login(token);
         } catch (Exception e) {
             log.error("==> shiro 登录认证失败，用户名：{}", userName);

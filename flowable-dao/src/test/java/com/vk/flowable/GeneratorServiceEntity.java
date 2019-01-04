@@ -14,7 +14,7 @@ public class GeneratorServiceEntity {
     @Test
     public void generateCode() {
         String packageName = "com.vk.flowable";
-        generateByTables(packageName, "tb_role");
+        generateByTables(packageName, "message_send_task");
     }
 
     private void generateByTables(String packageName, String... tableNames) {

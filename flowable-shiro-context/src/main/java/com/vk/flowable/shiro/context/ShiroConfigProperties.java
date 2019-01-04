@@ -4,6 +4,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+/**
+ * shiro相关配置
+ */
 @Configuration
 @PropertySource(value = "classpath:shiro-config.properties")
 @ConfigurationProperties(prefix = "shiro.integration") //注入shiro.integration开头的属性

@@ -6,7 +6,6 @@ import com.vk.flowable.shiro.context.ShiroUserContextService;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.realm.Realm;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
@@ -25,6 +24,9 @@ import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * shiro配置中心
+ */
 @Configuration
 public class ShiroSpringConfig {
 
@@ -67,7 +69,7 @@ public class ShiroSpringConfig {
 	 * @return
 	 */
 	@Bean(name = "/remote/ctx")
-	public HttpInvokerServiceExporter authContextServiceExporter(AdminUserContextService shiroAuthContextService) {
+	public HttpInvokerServiceExporter authContextServiceExporter(UserContextService shiroAuthContextService) {
 		HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
 		exporter.setServiceInterface(ShiroUserContextService.class);
 		exporter.setService(shiroAuthContextService);
@@ -77,12 +79,12 @@ public class ShiroSpringConfig {
 	// Realm实现
 	@Bean(name = "userRealm")
 	public AuthorizingRealm userRealm() {
-		AdminUserRealm adminUserRealm = new AdminUserRealm();
-		adminUserRealm.setAuthenticationCachingEnabled(true);
-		adminUserRealm.setAuthenticationCacheName("authenticationCache");
-		adminUserRealm.setAuthorizationCachingEnabled(true);
-		adminUserRealm.setAuthorizationCacheName("authorizationCache");
-		return adminUserRealm;
+		UserRealm userRealm = new UserRealm();
+		userRealm.setAuthenticationCachingEnabled(true);
+		userRealm.setAuthenticationCacheName("authenticationCache");
+		userRealm.setAuthorizationCachingEnabled(true);
+		userRealm.setAuthorizationCacheName("authorizationCache");
+		return userRealm;
 	}
 
 	// 会话管理器

@@ -11,14 +11,14 @@ import java.util.Set;
 
 @SuppressWarnings("unchecked")
 public class ShiroRedisCache<K, V> implements Cache<K, V> {
-	private static final String REDIS_SHIRO_CACHE = "vk";
+	private static final String REDIS_SHIRO_CACHE = "flowable";
     private String cacheKey;
     private RedisTemplate<K, V> redisTemplate;
 //    private long globalExpire = 30;
 
     @SuppressWarnings("rawtypes")
     public ShiroRedisCache(String name, RedisTemplate client) {
-        this.cacheKey = REDIS_SHIRO_CACHE + name + ":";
+        this.cacheKey = REDIS_SHIRO_CACHE + ":" + name + ":";
         this.redisTemplate = client;
     }
 
