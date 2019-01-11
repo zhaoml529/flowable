@@ -60,7 +60,7 @@ public class UserRealm extends AuthorizingRealm {
 			dto.setPermissions(getUserPermissions(user.getRoleId()));
 		}
 
-		return new SimpleAuthenticationInfo(dto,user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
+		return new SimpleAuthenticationInfo(dto,user.getPassword(), ByteSource.Util.bytes(user.getCredentialsSalt()), getName());
 	}
 
 	/**

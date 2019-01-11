@@ -71,7 +71,7 @@ public class PassportController extends BaseController {
             UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
             subject.login(token);
         } catch (Exception e) {
-            log.error("==> shiro 登录认证失败，用户名：{}", userName);
+            log.error("==> shiro 登录认证异常，用户名：{}, 异常:{}", userName, e);
             modelAndView.addObject("errorMessage", "用户名或密码不正确！");
             return modelAndView;
         }

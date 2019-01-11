@@ -20,7 +20,7 @@ public class SecurityUtils {
         String newPassword = new SimpleHash(
                 HASH_ALGORITHM,
                 user.getPassword(),
-                ByteSource.Util.bytes(salt),
+                ByteSource.Util.bytes(user.getCredentialsSalt()),
                 HASH_INTERATIONS).toHex();
         user.setPassword(newPassword);
     }

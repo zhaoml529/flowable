@@ -40,7 +40,6 @@ public class User implements Serializable {
     /**
      * 加密盐
      */
-    @TableField(exist = false)
     private String salt;
 
     /**
@@ -57,5 +56,13 @@ public class User implements Serializable {
      * 角色id
      */
     private Long roleId;
+
+    /**
+     * 获取盐
+     * @return
+     */
+    public String getCredentialsSalt() {
+        return userName + salt;
+    }
 
 }
