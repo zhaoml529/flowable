@@ -143,7 +143,7 @@ public class ShiroSpringConfig {
 		shiroFilterFactoryBean.setSuccessUrl("/");
 
 		shiroFilterFactoryBean.getFilters().put("authc", new ShiroFormAuthenticationFilter());
-		shiroFilterFactoryBean.getFilters().put("perms",new ShiroPermsFilter("erp", userContextService));
+		shiroFilterFactoryBean.getFilters().put("perms",new ShiroPermsFilter("flowable-admin", userContextService));
 
 		Map<String, String> filterChainDefinitionMap = new HashMap<>();
 		filterChainDefinitionMap.put("/login", "authc");

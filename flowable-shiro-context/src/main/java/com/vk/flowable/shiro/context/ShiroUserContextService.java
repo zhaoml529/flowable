@@ -4,6 +4,9 @@ import org.apache.shiro.session.Session;
 
 import java.io.Serializable;
 
+/**
+ * 服务端会话管理
+ */
 public interface ShiroUserContextService {
 	public Session getSession(String appKey, Serializable sessionId);
     public Serializable createSession(Session session);

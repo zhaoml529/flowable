@@ -28,6 +28,9 @@ import javax.servlet.Filter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 客户端shiro配置
+ */
 @Configuration
 public class ClientShiroSpringConfig {
 	@Bean
@@ -80,7 +83,7 @@ public class ClientShiroSpringConfig {
 	@Bean
 	public SessionManager sessionManager(SessionDAO sessionDAO, SimpleCookie sessionIdCookie) {
 		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-		sessionManager.setSessionDAO(sessionDAO);
+		sessionManager.setSessionDAO(sessionDAO);	// 基于HttpInvoker进行远程调用会话管理
 		sessionManager.setDeleteInvalidSessions(false);
 		sessionManager.setSessionValidationSchedulerEnabled(false);
 		sessionManager.setSessionIdCookieEnabled(true);
@@ -120,8 +123,12 @@ public class ClientShiroSpringConfig {
         filterRegistration.addUrlPatterns("/*");   
         filterRegistration.setDispatcherTypes(DispatcherType.REQUEST);  
         return filterRegistration;  
-    }  
-	
+    }
+
+	/**
+	 *
+	 * @return
+	 */
 	@Bean(name = "clientAuthcFilter")
 	public ClientShiroAuthcFilter clientAuthcFilter() {
 		return new ClientShiroAuthcFilter();

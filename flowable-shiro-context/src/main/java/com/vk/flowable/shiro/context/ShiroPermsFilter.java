@@ -25,9 +25,9 @@ public class ShiroPermsFilter extends PermissionsAuthorizationFilter {
 		String[] perms = ctxService.getMappedValue(appKey, requestURI);
 		
 		Subject subject = getSubject(request, response);
-		if(subject.hasRole("HandOfGod")) {
+		if(subject.hasRole("HandOfGod")) {	// 超级管理员
 			return true;
-		} else if(perms != null && perms.length > 0) {
+		} else if(perms != null && perms.length > 0) {	// 有权限
 			return super.isAccessAllowed(request, response, perms);
 		}
 		return false;

@@ -15,6 +15,10 @@ import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * 服务端会话管理
+ * appKey区分接入端
+ */
 @Component
 public class UserContextService implements ShiroUserContextService {
 	PatternMatcher pathMatcher = new AntPathMatcher();
@@ -55,6 +59,6 @@ public class UserContextService implements ShiroUserContextService {
 				return new String[] {p.getPermissionValue()};
 			}
 		}
-		return null;
+		return null;	// 无权限
 	}
 }

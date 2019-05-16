@@ -6,6 +6,10 @@ import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 
 import java.io.Serializable;
 
+/**
+ * 客户端会话管理(调用服务端接口)
+ * appKey区分接入端
+ */
 public class ClientShiroSessionDAO extends CachingSessionDAO {
     private ShiroUserContextService ctxService;
     private String appKey;
