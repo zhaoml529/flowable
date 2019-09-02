@@ -6,10 +6,10 @@
         http://dubbo.apache.org/schema/dubbo
         http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
 
-    <dubbo:consumer filter="transferLogFilter" timeout="5000"/>
+    <dubbo:consumer filter="transferLogFilter" timeout="5000" check="false"/>
 
     <!--<dubbo:reference interface="com.vk.flowable.mgt.rpc.api.service.ProcessRpcService" id="processRpcService" check="false"/>-->
 
-    <dubbo:reference interface="com.vk.flowable.mgt.rpc.api.service.ProcessTaskRpcService" id="processTaskRpcService" check="false"/>
+    <dubbo:reference interface="com.vk.flowable.mgt.rpc.api.service.ProcessTaskRpcService" id="processTaskRpcService"/>
 
 </beans>

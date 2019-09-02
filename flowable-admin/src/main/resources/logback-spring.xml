@@ -6,7 +6,7 @@
     <!--<property resource="log.properties" />-->
     <property name="max.file.size" value="200MB"/>
     <!-- 文件历史数 -->
-    <property name="maxHistory" value="30"/>
+    <property name="maxHistory" value="300"/>
     <!-- logback -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -41,7 +41,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.vk.flowable" level="${logLevel}"/>
+    <logger name="com.vk" level="${logLevel}"/>
 
 
     <root level="INFO">    <!-- 根据实际情况修改日志级别，一般线上是INFO以上 -->
